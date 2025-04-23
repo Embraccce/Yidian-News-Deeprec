@@ -1,0 +1,23 @@
+# train_config.yaml
+
+# 全局训练配置
+global:
+  log_dir: "/data3/zxh/news_rec/logs"     # 日志目录
+  checkpoint_dir: "/data3/zxh/news_rec/checkpoints"  # 模型保存路径
+  monitor_metric: "val_auc"             # 早停监控指标
+  early_stop_patience: 3                # 早停等待轮次
+  restore_best_weights: true            # 是否恢复最佳权重
+  train_data: "/data3/zxh/news_rec/rank_csv_data/train_data/*.csv"
+  val_data: "/data3/zxh/news_rec/rank_csv_data/val_data/*.csv"
+  test_data: "/data3/zxh/news_rec/rank_csv_data/test_data/test_data.csv"
+  embedding_data: "/data3/zxh/news_rec/public_data/doc_title_emb_64.ipc"
+  batch_size: 8192                     # 全局默认批次大小
+  eval_steps: 100                       # 验证步数间隔
+
+# 优化器配置（可被模型覆盖）
+optimizer:
+  type: "adam"          # 可选 adam/rmsprop/adagrad
+  learning_rate: 0.001
+  beta_1: 0.9
+  beta_2: 0.999
+  epsilon: 1e-07

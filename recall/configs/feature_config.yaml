@@ -1,0 +1,228 @@
+# feature_config.yaml
+csv_schema:
+  - user_id
+  - article_id
+  - network_env
+  - refresh_count
+  - device_name
+  - os
+  - province
+  - city
+  - age
+  - gender
+  - userid_history_duration_mean
+  - userid_history_count
+  - userid_expose_count
+  - userid_ctr
+  - keywords
+  - image_count
+  - category_level1
+  - category_level2
+  - docid_history_count
+  - docid_expose_count
+  - docid_ctr
+  - docid_history_duration_mean
+  - category1_ctr
+  - category1_popularity
+  - category1_history_duration_mean
+  - category2_ctr
+  - category2_popularity
+  - category2_history_duration_mean
+  - expose_hour
+feature_types:
+  sparse:
+    - name: "user_id"
+      voc_size: 1600000
+      hash_size: 1600000
+      embed_dim: 36
+      dtype: "string"
+      
+    - name: "device_name"
+      voc_size: 4000
+      hash_size: 4000
+      embed_dim: 8
+      dtype: "string"
+
+    - name: "os"
+      voc_size: 2
+      embed_dim: 2
+      dtype: "string"
+
+    - name: "province"
+      voc_size: 400
+      hash_size: 400
+      embed_dim: 6
+      dtype: "string"
+
+    - name: "city"
+      voc_size: 800
+      hash_size: 800
+      embed_dim: 6
+      dtype: "string"
+
+    - name: "article_id"
+      voc_size: 700000
+      hash_size: 700000
+      embed_dim: 32
+      dtype: "string"
+
+    - name: "image_count"
+      voc_size: 4
+      embed_dim: 2
+      dtype: "string"
+
+    - name: "category_level1"
+      voc_size: 60
+      hash_size: 60
+      embed_dim: 4
+      dtype: "string"
+
+    - name: "category_level2"
+      voc_size: 300
+      hash_size: 300
+      embed_dim: 6
+      dtype: "string"
+
+    - name: "network_env"
+      voc_size: 6
+      embed_dim: 2
+      dtype: "int32"
+
+    - name: "expose_hour"
+      voc_size: 25
+      embed_dim: 2
+      dtype: "int32"
+
+  dense:
+    - name: "userid_history_duration_mean"
+      dim: 1
+      dtype: "float32"
+
+    - name: "userid_history_count"
+      dim: 1
+      dtype: "float32"
+
+    - name: "userid_expose_count"
+      dim: 1
+      dtype: "float32"
+
+    - name: "userid_ctr"
+      dim: 1
+      dtype: "float32"
+
+    - name: "docid_history_duration_mean"
+      dim: 1
+      dtype: "float32"
+
+    - name: "docid_history_count"
+      dim: 1
+      dtype: "float32"
+
+    - name: "docid_expose_count"
+      dim: 1
+      dtype: "float32"
+
+    - name: "docid_ctr"
+      dim: 1
+      dtype: "float32"
+
+    - name: "category1_ctr"
+      dim: 1
+      dtype: "float32"
+
+    - name: "category1_popularity"
+      dim: 1
+      dtype: "float32"
+
+    - name: "category1_history_duration_mean"
+      dim: 1
+      dtype: "float32"
+
+    - name: "category2_ctr"
+      dim: 1
+      dtype: "float32"
+
+    - name: "category2_popularity"
+      dim: 1
+      dtype: "float32"
+
+    - name: "category2_history_duration_mean"
+      dim: 1
+      dtype: "float32"
+
+    - name: "refresh_count"
+      dim: 1
+      dtype: "float32"
+
+    - name: "doc_title_embed"
+      pre_embed: "article_id"
+      dim: 32
+      dtype: "float32"
+
+  varlen:
+    - name: "age"
+      voc_size: 6
+      maxlen: 4
+      combiner: "sum"
+      embed_dim: 2
+      weight_name: "age_weight"
+      dtype: "string"
+
+    - name: "gender"
+      voc_size: 4
+      maxlen: 2
+      combiner: "sum"
+      embed_dim: 2
+      weight_name: "gender_weight"
+      dtype: "string"
+
+    - name: "keywords"
+      voc_size: 1500000
+      hash_size: 1500000
+      maxlen: 40
+      combiner: "sum"
+      embed_dim: 36
+      weight_name: "keywords_weight"
+      dtype: "string"
+
+feature_groups:
+  user_features:
+    - "user_id"
+    - "network_env"
+    - "refresh_count"
+    - "device_name"
+    - "os"
+    - "province"
+    - "city"
+    - "age"
+    - "gender"
+    - "userid_history_duration_mean"
+    - "userid_history_count"
+    - "userid_expose_count"
+    - "userid_ctr"
+    - "expose_hour"
+
+  item_features:
+    - "article_id"
+    - "keywords"
+    - "image_count"
+    - "doc_title_embed"
+    - "category_level1"
+    - "category_level2"
+    - "docid_history_count"
+    - "docid_expose_count"
+    - "docid_ctr"
+    - "docid_history_duration_mean"
+    - "category1_ctr"
+    - "category1_popularity"
+    - "category1_history_duration_mean"
+    - "category2_ctr"
+    - "category2_popularity"
+    - "category2_history_duration_mean"
+
+categorical_vocabs:
+  os: ["Android", "IOS"]
+  image_count: ["1", "2", "3", "4"]
+  network_env: [2, 3, 4, 5]
+  age: ["A_0_24", "A_25_29", "A_30_39", "A_40+"]
+  gender: ["female", "male"]

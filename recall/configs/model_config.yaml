@@ -1,0 +1,7 @@
+dssm:
+  user_dnn_hidden_units: [320, 200, 80]
+  item_dnn_hidden_units: [320, 200, 80]
+  out_dnn_activation: "tanh"
+  temperature: 0.05
+  dnn_use_bn: False
+  seed: 1024
